@@ -1,0 +1,28 @@
+<h1><%= @deck.name %></h1>
+
+Cards currently in the deck:
+
+<div class="deck_list">
+  <ul>
+    <li>
+      <ul>
+        <li>Question</li>
+      </ul>
+    </li>
+    <% @deck.cards.each do |card| %>
+      <li>
+        <ul>
+          <li>
+            <%= card.question %>
+          </li>
+          <li>
+            <form action="/cards" method="post">
+              <input type="hidden" name="_method" value="delete">
+              <input type="hidden" name="id" value="<%= card.id %>">
+              <input type="submit" value="remove card">
+          </li>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+</div>
