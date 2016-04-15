@@ -1,0 +1,21 @@
+<h1>Pick a deck to take a quiz.</h1>
+
+<div class="deck_list">
+  <ul>
+    <li>
+      <ul>
+        <li>Deck Name</li><li>Description</li><li>Number of Cards</li>
+      </ul>
+    </li>
+    <% Deck.all.each do |deck| %>
+      <li>
+        <ul>
+          <a href="decks/<%= deck.id %>">
+            <li><%= deck.name %></li><li><%= deck.snippet %></li><li><%= deck.cards.length %></li>
+          </a>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
