@@ -1,0 +1,8 @@
+.deck_list li {
+  list-style-type: none;
+}
+
+.deck_list li li {
+  float: left;
+  width: 33%;
+}
