@@ -1,0 +1,22 @@
+<h1>Register Here!</h1>
+
+<% if @errors %>
+  <div>
+    <span>Something went wrong:</span>
+    <ul>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<form action='/users' method='POST'>
+	Username: <input type='text' name='user[username]', placeholder='Username'>
+	<br>
+	Email: <input type='text' name='user[email]' placeholder='Email'>
+	<br>
+	Password: <input type='password' name='user[password]' placeholder='Password'>
+	<br>
+	<input type='submit' value='Create Account'>
+</form>
