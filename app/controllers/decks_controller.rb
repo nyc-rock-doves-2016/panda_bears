@@ -25,3 +25,8 @@ get "/decks/:id/edit" do
   @deck = Deck.find_by(id: params[:id])
   erb :"decks/edit"
 end
+
+get "/users/:id/decks" do
+  @user = User.find_by(id: params[:id])
+  erb :"users/decks"
+end
