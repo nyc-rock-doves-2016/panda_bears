@@ -1,7 +1,15 @@
+<% if @guess %>
+  You were <%= @guess.guess_result %>!
+  <% unless @guess.is_correct %>
+    The correct answer was: <%= @guess.card.answer %>
+  <% end %>
+<% end %>
+
 <div class="q_a">
-<span class="card_question"><%= @card.question %></span>
-<form class="card_answer" method="get" action="/cards/check">
-  <input type="text" name="answer">
-  <input type="submit" value="Submit Answer">
-</form>
+  <span class="card_question"><%= @card.question %></span>
+  <form class="card_answer" method="post" action="/rounds/<%= @round.id %>/cards/<%= @card.id %>">
+    <input type="hidden" name="card_id" value="<%= @card.id %>">
+    <input type="text" name="answer">
+    <input type="submit" value="Submit Answer">
+  </form>
 </div>

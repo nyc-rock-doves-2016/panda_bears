@@ -30,9 +30,12 @@
     <% end %>
 
     <% if session[:user_id] %>
-      <a href="/users/logout">logout</a>
+      <form action="/sessions" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type=submit value="log out">
+      </form>
     <% else %>
-      <a href="/users/login">login</a>
+      <a href="/sessions">login</a>
     <% end %>
 
     <a href="/">home</a>

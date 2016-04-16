@@ -1,6 +1,26 @@
+<%= erb :_errors, locals: {errors: @errors} %>
+
 <h1><%= @user.username %>'s Profile</h1>
 <a href='/decks/new'>Create a Deck</a>
-<a href='/decks/<%= @user.id %>/edit'>My Decks</a>
-<a href='/users/logout'>Logout</a>
+<a href='/users/<%= @user.id %>/decks'>My Decks</a>
+<form action="/sessions" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type=submit value="log out">
+</form>
 
 <h3><%= @user.username %>'s Flashcard Statistics</h3>
+
+<% @user.played_decks.uniq.each do |deck| %>
+  <%= deck.name %>
+  <table>
+    <% deck.rounds.select {|round| round.complete?}.each do |complete_round| %>
+      <tr>
+      <td>Correct on First Try: <%= complete_round.correct_on_first_try.length %></td>
+      <td>Total Guesses: <%= complete_round.guesses.length %></td>
+      </tr>
+    <% end %>
+  </table>
+  <br>
+<% end %>
+
+
