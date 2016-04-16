@@ -1,15 +1,7 @@
 <h1>Register Here!</h1>
 
-<% if @errors %>
-  <div>
-    <span>Something went wrong:</span>
-    <ul>
-      <% @errors.each do |error| %>
-        <li><%= error %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= erb :_errors, locals: {errors: @errors} %>
+
 
 <form action='/users' method='POST'>
 	Username: <input type='text' name='user[username]', placeholder='Username'>
