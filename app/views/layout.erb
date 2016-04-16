@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- 
+  <!--
     normalize.css removes cross-browser differences in defaults, e.g.,
     differences in how form elements appear between Firefox and IE
     See: http://necolas.github.com/normalize.css/
@@ -23,7 +23,8 @@
   <nav>
 
     <% if session[:user_id] %>
-      <a href="/users/<%= session[:user_id] %>"><%= session[:user_id] %></a>
+    <% @user = User.find_by(id: session[:user_id]) %>
+      <a href="/users/<%= session[:user_id] %>"><%= @user.username %></a>
     <% else %>
       <a href="/users/new">register</a>
     <% end %>

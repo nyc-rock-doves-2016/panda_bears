@@ -1,8 +1,8 @@
-get '/users/new' do 
+get '/users/new' do
 	erb :'users/new'
 end
 
-post '/users' do 
+post '/users' do
 	@user = User.new(params[:user])
 	if @user.save
 		session[:user_id] = @user.id
@@ -13,7 +13,7 @@ post '/users' do
 	end
 end
 
-get '/users/login' do 
+get '/users/login' do
 	erb :'users/login'
 end
 
@@ -28,12 +28,13 @@ post '/users/login' do
 	end
 end
 
-get '/users/logout' do 
-	session.clear	
+get '/users/logout' do
+	session.clear
 	redirect '/users/login'
 end
 
-get '/users/:id' do 
+get '/users/:id' do
+	require_user
 	@user = User.find(params[:id])
 	erb :'users/show'
 end
