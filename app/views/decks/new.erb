@@ -1,11 +1,10 @@
+<%= erb :_errors, locals: {errors: @errors} %>
+
 <h1>Create a new deck:</h1>
 
 <form action="/decks" method="post">
   Name: <textarea type="text" name="deck[name]" value="Your deck name here"></textarea>
   Description: <textarea type="text" name="deck[description]" value="Write a description of your deck here."></textarea>
-  <input type="hidden" name="deck[creator_id]" value="<%= session[:user_id] %>">
+  <input type="hidden" name="deck[creator_id]" value="<%= @user.id %>">
   <input type="submit" value="Create your deck!">
-
 </form>
-
-NOTE: User ID is currently hardcoded in!

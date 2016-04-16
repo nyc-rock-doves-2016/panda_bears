@@ -6,3 +6,21 @@
   float: left;
   width: 33%;
 }
+
+.card_list li {
+  list-style-type: none;
+}
+
+.card_list li li {
+  float: left;
+  width: 33%;
+}
+
+.user_deck_list li {
+  list-style-type: none;
+}
+
+.user_deck_list li li {
+  float: left;
+  width: 25%;
+}

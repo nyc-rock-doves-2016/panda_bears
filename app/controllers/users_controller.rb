@@ -13,26 +13,6 @@ post '/users' do
 	end
 end
 
-get '/users/login' do
-	erb :'users/login'
-end
-
-post '/users/login' do
-	@user = User.find_by(username: params[:user][:username])
-	if @user && @user.authenticate(params[:user][:password])
-		session[:user_id] = @user.id
-		redirect "/users/#{@user.id}"
-	else
-		@errors = ["Incorrect Email or Password"]
-		erb :'users/login'
-	end
-end
-
-get '/users/logout' do
-	session.clear
-	redirect '/users/login'
-end
-
 get '/users/:id' do
 	require_user
 	@user = User.find(params[:id])

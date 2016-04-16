@@ -1,12 +1,31 @@
+<%= erb :_errors, locals: {errors: @errors} %>
+
 <h1><%= @deck.name %></h1>
+
+<form action="/decks/<%= @deck.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete this deck">(Permanently! Careful!)
+</form>
+
+<form action="/decks/<%= @deck.id %>" method="post">
+  <input type="hidden" name="_method" value="put">
+  Name: <textarea type="text" name="deck[name]" ><%= @deck.name%></textarea>
+  Description: <textarea type="text" name="deck[description]"><%= @deck.description%></textarea>
+  <input type="submit" value="Update">
+</form>
+
+<form action="/cards/new" method="get">
+  <input type="hidden" name="deck_id" value="<%= @deck.id %>" >
+  <input type=submit value="Add a card">
+</form><br>
 
 Cards currently in the deck:
 
-<div class="deck_list">
+<div class="card_list">
   <ul>
     <li>
       <ul>
-        <li>Question</li>
+        <li>Question</li><li>Answer</li><br>
       </ul>
     </li>
     <% @deck.cards.each do |card| %>
@@ -16,9 +35,13 @@ Cards currently in the deck:
             <%= card.question %>
           </li>
           <li>
+            <%= card.answer %>
+          </li>
+          <li>
             <form action="/cards" method="post">
               <input type="hidden" name="_method" value="delete">
-              <input type="hidden" name="id" value="<%= card.id %>">
+              <input type="hidden" name="card_id" value="<%= card.id %>">
+              <input type="hidden" name="deck_id" value="<%= @deck.id %>">
               <input type="submit" value="remove card">
           </li>
         </ul>
@@ -26,3 +49,7 @@ Cards currently in the deck:
     <% end %>
   </ul>
 </div>
+
+<a href='/users/<%= @deck.creator_id %>/decks'>Back to My Decks</a>
+
+

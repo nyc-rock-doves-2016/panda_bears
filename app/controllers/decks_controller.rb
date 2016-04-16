@@ -12,7 +12,8 @@ post "/decks" do
   if @deck.save!
     redirect "decks/#{@deck.id}/edit"
   else
-    erb :"decks/new"
+    @errors = @user.errors.full_messages
+    redirect '/decks/new'
   end
 end
 
@@ -24,6 +25,21 @@ end
 get "/decks/:id/edit" do
   @deck = Deck.find_by(id: params[:id])
   erb :"decks/edit"
+end
+
+put "/decks/:id" do
+  @deck = Deck.find_by(id: params[:id])
+  @deck.assign_attributes(params[:deck])
+  @errors = @user.errors.full_messages unless @deck.save
+  redirect "/decks/#{@deck.id}/edit"
+
+end
+
+delete "/decks/:id" do
+  @deck = Deck.find_by(id: params[:id])
+  @deck.cards.each {|card| card.destroy}
+  @deck.destroy
+  redirect "users/#{session[:user_id]}/decks"
 end
 
 get "/users/:id/decks" do
