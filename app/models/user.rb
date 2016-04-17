@@ -10,7 +10,19 @@ class User < ActiveRecord::Base
     self.rounds.select{|round| round.complete?}.length
   end
 
+  def total_correct_on_first_try 
+    self.rounds.reduce(0){|sum, round| sum + round.correct_on_first_try.count}
+  end
+
+  def total_guesses
+    self.rounds.reduce(0){|sum, round| sum + round.guesses.length}
+  end
+
   def percent_correct_on_first_try
-    "#{(self.rounds.reduce(0){|sum, round| sum + round.correct_on_first_try.count} / self.rounds.reduce(0){|sum, round| sum + round.cards.length}.to_f * 100).round}%"
+    if self.total_guesses != 0
+      "#{self.total_correct_on_first_try / (self.total_guesses.to_f * 100).round}%"
+    else
+      "N/A"
+    end
   end
 end
