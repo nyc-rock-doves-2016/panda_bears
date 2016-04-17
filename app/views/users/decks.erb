@@ -1,23 +1,24 @@
-<h1><%= @user.username %>'s Decks</h1>
-
-<div class="user_deck_list">
-  <ul>
-    <li>
-      <ul>
-        <li>Deck Name</li><li>Description</li><li>Number of Cards</li><br>
-      </ul>
-    </li>
-    <% @user.created_decks.each do |deck| %>
-      <li>
-        <ul>
-          <a href="../../../decks/<%= deck.id %>">
-            <li><%= deck.name %></li><li><%= deck.snippet %></li><li><%= deck.cards.length %></li>
-          </a>
-          <a href="../../../decks/<%= deck.id %>/edit"><li>edit deck</li></a>
-        </ul>
-      </li>
-    <% end %>
-  </ul>
-</div>
-
-<a href='/decks/new'>Create a Deck</a>
+<h1 class="table_title"><%= @user.username %>'s Decks</h1>
+  <table>
+    <tr>
+      <th>Deck Name</th>
+      <th>Description</th> 
+      <th>Number of Cards</th>
+      <th>Edit</th>
+    </tr>
+   <% @user.created_decks.each do |deck| %>
+    <tr>
+      <td>
+        <a href="../../../decks/<%= deck.id %>"><%= deck.name %></a>
+      </td>
+      <td><%= deck.snippet %></td>
+      <td><%= deck.cards.length %></td>
+      <td>
+        <a href="../../../decks/<%= deck.id %>/edit">edit deck</a>
+      </td>
+    </tr> 
+  <% end %>
+    <tr>
+      <td><a href='/decks/new'>Create a Deck</a></td>
+    </tr>
+  </table>

@@ -1,26 +1,42 @@
 <%= erb :_errors, locals: {errors: @errors} %>
 
-<h1><%= @user.username %>'s Profile</h1>
-<a href='/decks/new'>Create a Deck</a>
-<a href='/users/<%= @user.id %>/decks'>My Decks</a>
-<form action="/sessions" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <input type=submit value="log out">
-</form>
+<h1 class="table_title"><%= @user.username %>'s Profile</h1>
 
-<h3><%= @user.username %>'s Flashcard Statistics</h3>
-Number of rounds played: <%= @user.rounds_played %> <br>
-Percent correct on first try: <%= @user.percent_correct_on_first_try %><br>
+<table>
+  <tr>
+    <td><a href='/decks/new'>Create a Deck</a></td>
+    <td><a href='/users/<%= @user.id %>/decks'>My Decks</a></td>
+  </tr>
+</table>
+
+<h2 class="table_title"><%= @user.username %>'s Flashcard Statistics</h2>
+
+<table>
+  <tr>
+    <td>Number of rounds played:</td>
+    <td><%= @user.rounds_played %></td>
+  </tr>
+  <tr>
+    <td>Percent correct on first try:</td>
+    <td><%= @user.percent_correct_on_first_try %></td>
+  </tr>
+</table>
 
 <% @user.played_decks.uniq.each do |deck| %>
-  <%= deck.name %> <a href="../decks/<%= deck.id %>">Go to deck</a>
+  <h3 class="table_title"><%= deck.name %> <a href="../decks/<%= deck.id %>">Go to deck</a></h3>
   <table>
+    <tr>
+      <th>Date Taken</th>
+      <th>Correct on First Try</th> 
+      <th>Total Guesses</th>
+      <th>Percent Correct on First Try</th>
+    </tr>
     <% deck.rounds.select {|round| round.complete?}.each do |complete_round| %>
       <tr>
-        <td>Date Taken: <%= complete_round.created_at.strftime('%a %d %b %Y') %></td>
-        <td>Correct on First Try: <%= complete_round.correct_on_first_try.length %></td>
-        <td>Total Guesses: <%= complete_round.guesses.length %></td>
-        <td>Percent Correct on First Try: <%= complete_round.percent_correct_on_first_try %></td>
+        <td><%= complete_round.created_at.strftime('%a %d %b %Y') %></td>
+        <td><%= complete_round.correct_on_first_try.length %></td>
+        <td><%= complete_round.guesses.length %></td>
+        <td><%= complete_round.percent_correct_on_first_try %></td>
       </tr>
     <% end %>
   </table>

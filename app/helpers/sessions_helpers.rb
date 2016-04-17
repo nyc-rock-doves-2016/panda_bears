@@ -4,6 +4,6 @@ helpers do
 	end
 
 	def require_user
-    redirect '/sessions' unless logged_in?
+    	redirect '/sessions' unless logged_in?
 	end
 end

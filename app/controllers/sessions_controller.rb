@@ -13,7 +13,7 @@ post '/sessions' do
     redirect "/users/#{@user.id}"
   else
     @errors = ["Incorrect Email or Password"]
-    redirect 'sessions/'
+    redirect '/sessions'
   end
 end
 

@@ -18,31 +18,42 @@
   <title></title>
 </head>
 <body>
-  <h1>Quizzical</h1>
-
+    <div id="quizzical">
+      <h1>Quizzical</h1>
+    </div>
   <nav>
-
-    <% if session[:user_id] %>
-    <% @user = User.find_by(id: session[:user_id]) %>
-      <a href="/users/<%= session[:user_id] %>"><%= @user.username %></a>
-    <% else %>
-      <a href="/users/new">register</a>
-    <% end %>
-
-    <% if session[:user_id] %>
-      <form action="/sessions" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input type=submit value="log out">
-      </form>
-    <% else %>
-      <a href="/sessions">login</a>
-    <% end %>
-
-    <a href="/">home</a>
-
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li>
+        <% if session[:user_id] %>
+         <% @user = User.find_by(id: session[:user_id]) %>
+          <a href="/users/<%= session[:user_id] %>"><%= @user.username %></a>
+        <% else %>
+           <a href="/users/new">Register</a>
+      </li>
+      <% end %>
+      <li>
+        <% if session[:user_id] %>
+              <form action="/sessions" method="post">
+              <input type="hidden" name="_method" value="delete">
+              <input type=submit value="Log Out">
+            </form>
+        <% else %>
+          <a class="button" href="/sessions">Log In</a>
+        <% end %>
+      </li>
+    </ul>
+    
   </nav>
 
-  <%= yield %>
+  <div id="everything_below_nav_bar">
+    <%= yield %>
+  </div>
+
+  <footer>
+    <h3>© Copyright 2016</h3>
+    <h4>Daniel Homer, Kevin Perkins, Jonathan Schwartz</h4>
+  </footer>
 
 </body>
 </html>

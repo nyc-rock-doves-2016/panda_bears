@@ -1,15 +1,30 @@
-<% if @guess %>
-  You were <%= @guess.guess_result %>!
-  <% unless @guess.is_correct %>
-    The correct answer was: <%= @guess.card.answer %>
-  <% end %>
-<% end %>
-
-<div class="q_a">
-  <span class="card_question"><%= @card.question %></span>
-  <form class="card_answer" method="post" action="/rounds/<%= @round.id %>/cards/<%= @card.id %>">
+<table class="new_game">
+  <tr>
+    <td>
+      <h1><%= @card.question %></h1>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <% if @guess %>
+        You are <%= @guess.guess_result %>!
+        <% unless @guess.is_correct %>
+          The correct answer is: <%= @guess.card.answer %>
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <form class="card_answer" method="post" action="/rounds/<%= @round.id %>/cards/<%= @card.id %>">
     <input type="hidden" name="card_id" value="<%= @card.id %>">
     <input type="text" name="answer">
-    <input type="submit" value="Submit Answer">
-  </form>
-</div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <input type="submit" value="Submit Answer">
+      </form>
+    </td>
+  </tr>
+</table>
