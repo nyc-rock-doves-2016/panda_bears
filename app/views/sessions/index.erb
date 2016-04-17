@@ -2,10 +2,12 @@
 
 <%= erb :_errors, locals: {errors: @errors} %>
 
-<form action='/sessions' method='POST'>
-  Username: <input type='text' name='user[username]', placeholder='Username'>
-  <br>
-  Password: <input type='password' name='user[password]' placeholder='Password'>
-  <br>
-  <input type='submit' value='Login'>
-</form>
+<% unless session[:user_id] %>
+  <form action='/sessions' method='POST'>
+    Username: <input type='text' name='user[username]', placeholder='Username'>
+    <br>
+    Password: <input type='password' name='user[password]' placeholder='Password'>
+    <br>
+    <input type='submit' value='Login'>
+  </form>
+<% end %>

@@ -14,8 +14,8 @@ post '/users' do
 end
 
 get '/users/:id' do
+	@user = User.find_by(id: params[:id])
 	require_user
-	@user = User.find(params[:id])
 	erb :'users/show'
 end
 

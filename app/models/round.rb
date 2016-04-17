@@ -23,4 +23,8 @@ class Round < ActiveRecord::Base
   def correct_guesses
     self.guesses.select {|guess| guess.is_correct}
   end
+
+  def percent_correct_on_first_try
+    "#{((self.correct_on_first_try.count / self.cards.count.to_f) * 100).round}%"
+  end
 end

@@ -9,14 +9,18 @@
 </form>
 
 <h3><%= @user.username %>'s Flashcard Statistics</h3>
+Number of rounds played: <%= @user.rounds_played %> <br>
+Percent correct on first try: <%= @user.percent_correct_on_first_try %><br>
 
 <% @user.played_decks.uniq.each do |deck| %>
-  <%= deck.name %>
+  <%= deck.name %> <a href="../decks/<%= deck.id %>">Go to deck</a>
   <table>
     <% deck.rounds.select {|round| round.complete?}.each do |complete_round| %>
       <tr>
-      <td>Correct on First Try: <%= complete_round.correct_on_first_try.length %></td>
-      <td>Total Guesses: <%= complete_round.guesses.length %></td>
+        <td>Date Taken: <%= complete_round.created_at.strftime('%a %d %b %Y') %></td>
+        <td>Correct on First Try: <%= complete_round.correct_on_first_try.length %></td>
+        <td>Total Guesses: <%= complete_round.guesses.length %></td>
+        <td>Percent Correct on First Try: <%= complete_round.percent_correct_on_first_try %></td>
       </tr>
     <% end %>
   </table>
