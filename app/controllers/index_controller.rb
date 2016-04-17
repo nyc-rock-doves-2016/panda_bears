@@ -1,3 +1,4 @@
 get '/' do
-  redirect '/decks'
+  # redirect '/decks'
+  redirect '/sessions'
 end

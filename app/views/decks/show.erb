@@ -1,18 +1,31 @@
 <%= erb :_errors, locals: {errors: @errors} %>
 
-<h1><%= @deck.name %></h1>
+<table class="new_game">
+	<tr>
+		<td>
+			<h1><%= @deck.name %></h1>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<%= @deck.description %>
+		</td>
+	</tr>
 
-<%= @deck.description %>
-
-<% if session[:user_id] && session[:user_id] == @deck.creator_id %>
-  <a href='/decks/<%= @deck.id %>/edit'>Edit this deck</a>
-<% end %>
-
-<form action="/rounds" method="post">
-  <input type="hidden" name="round[deck_id]" value="<%= @deck.id %>" >
-  <input type="hidden" name="round[player_id]" value="<%= session[:user_id] %>" >
-  <input type="submit" value="Take the Quiz!" >
-</form>
-
-
-
+	<tr>
+		<td>
+			<form action="/rounds" method="post">
+				<input type="hidden" name="round[deck_id]" value="<%= @deck.id %>" >
+				<input type="hidden" name="round[player_id]" value="<%= session[:user_id] %>" >
+				<input class="button" type="submit" value="Take the Quiz!" >
+			</form>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<% if session[:user_id] && session[:user_id] == @deck.creator_id %>
+			  <a href='/decks/<%= @deck.id %>/edit'>Edit this deck</a>
+			<% end %>
+		</td>
+	</tr>
+</table>

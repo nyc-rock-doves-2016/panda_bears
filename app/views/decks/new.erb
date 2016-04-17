@@ -2,9 +2,27 @@
 
 <h1>Create a new deck:</h1>
 
-<form action="/decks" method="post">
-  Name: <textarea type="text" name="deck[name]" value="Your deck name here"></textarea>
-  Description: <textarea type="text" name="deck[description]" value="Write a description of your deck here."></textarea>
-  <input type="hidden" name="deck[creator_id]" value="<%= @user.id %>">
-  <input type="submit" value="Create your deck!">
-</form>
+<table>
+	<tr>
+		<td>
+			<h2>Your deck name here:</h2>
+			<form action="/decks" method="post">
+  				<input type="text" name="deck[name]" placeholder="Deck Name">
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<h2>Write a desciption of your deck here</h2>
+			<textarea rows="3" cols="50" type="text" name="deck[description]" value="Write a description of your deck here."></textarea>
+  			<input type="hidden" name="deck[creator_id]" value="<%= @user.id %>">
+		</td>
+	</tr>
+
+	<tr>
+	    <td>
+	      <input type="submit" value="Create your deck!">
+	      </form>
+	    </td>
+  	</tr>
+</table>

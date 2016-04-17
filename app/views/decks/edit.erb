@@ -1,55 +1,66 @@
 <%= erb :_errors, locals: {errors: @errors} %>
 
-<h1><%= @deck.name %></h1>
-
-<form action="/decks/<%= @deck.id %>" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete this deck">(Permanently! Careful!)
-</form>
-
-<form action="/decks/<%= @deck.id %>" method="post">
-  <input type="hidden" name="_method" value="put">
-  Name: <textarea type="text" name="deck[name]" ><%= @deck.name%></textarea>
-  Description: <textarea type="text" name="deck[description]"><%= @deck.description%></textarea>
-  <input type="submit" value="Update">
-</form>
-
-<form action="/cards/new" method="get">
-  <input type="hidden" name="deck_id" value="<%= @deck.id %>" >
-  <input type=submit value="Add a card">
-</form><br>
-
-Cards currently in the deck:
-
-<div class="card_list">
-  <ul>
-    <li>
-      <ul>
-        <li>Question</li><li>Answer</li><br>
-      </ul>
-    </li>
-    <% @deck.cards.each do |card| %>
-      <li>
-        <ul>
-          <li>
-            <%= card.question %>
-          </li>
-          <li>
-            <%= card.answer %>
-          </li>
-          <li>
-            <form action="/cards" method="post">
-              <input type="hidden" name="_method" value="delete">
-              <input type="hidden" name="card_id" value="<%= card.id %>">
-              <input type="hidden" name="deck_id" value="<%= @deck.id %>">
-              <input type="submit" value="remove card">
-          </li>
-        </ul>
-      </li>
-    <% end %>
-  </ul>
-</div>
-
 <a href='/users/<%= @deck.creator_id %>/decks'>Back to My Decks</a>
 
+<h1 class="table_title"><%= @deck.name %></h1>
 
+<table class="update_deck">
+  <tr>
+    <td>
+    <h2>Name:</h2>
+        <form action="/decks/<%= @deck.id %>" method="post">
+         <input type="hidden" name="_method" value="put">
+        <input type="text" name="deck[name]" value="<%= @deck.name%>">
+    </td>
+  </tr>
+  <tr>
+    <td>
+    <h2>Description:</h2>
+      <textarea rows="3" cols ="50" type="text" name="deck[description]"><%= @deck.description%></textarea>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <input class="button" type="submit" value="Update">
+      </form>
+    </td>
+  </tr>
+</table>
+
+<h2 class="table_title">Cards currently in the deck:</h2>
+
+<table>
+  <tr>
+    <th>Question</th>
+    <th>Answer</th> 
+    <th>Remove</th>
+  </tr>
+  <% @deck.cards.each do |card| %>
+   <tr>
+    <td><%= card.question %></td>
+    <td><%= card.answer %></td>
+    <td>
+      <form class="button" action="/cards" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="card_id" value="<%= card.id %>">
+        <input type="hidden" name="deck_id" value="<%= @deck.id %>">
+        <input type="submit" value="remove card">
+      </form>
+    </td>
+   </tr>
+  <% end %>
+  <tr>
+    <td>
+      <form class="button" action="/cards/new" method="get">
+        <input type="hidden" name="deck_id" value="<%= @deck.id %>" >
+        <input type=submit value="Add a card">
+      </form>
+    </td>
+    <td>
+      <form class="button" action="/decks/<%= @deck.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Permanently delete this deck">
+      </form>
+    </td>
+  </tr>
+</table>
