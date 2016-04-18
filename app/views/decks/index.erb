@@ -6,6 +6,7 @@
     <th>Description</th> 
     <th>Number of Cards</th>
   </tr>
+  <!-- DO NOT USE ActiveRecord in your views instead assign it to an instance variable in the controller and use that here -->
   <% Deck.all.each do |deck| %>
       <tr>
         <td><a href="decks/<%= deck.id %>"><%= deck.name %></a></td>
