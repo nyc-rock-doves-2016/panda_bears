@@ -14,8 +14,9 @@ post '/users' do
 end
 
 get '/users/:id' do
+	redirect '/decks' unless session[:user_id] && session[:user_id] == params[:id].to_i 
 	@user = User.find_by(id: params[:id])
-	require_user
+	#require_user
 	erb :'users/show'
 end
 
