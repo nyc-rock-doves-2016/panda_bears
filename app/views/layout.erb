@@ -22,7 +22,7 @@
     <h1 id="quizzical"><a href='/'>Quizzical</a></h1>
     <nav>
         <a href="/">Home</a>
-          <% if session[:user_id] %>
+          <% if logged_in?%>
             <% @user = User.find_by(id: session[:user_id]) %>
             <a href="/users/<%= session[:user_id] %>"><%= @user.username %></a>
           <% else %>
