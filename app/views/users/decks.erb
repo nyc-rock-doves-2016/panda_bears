@@ -9,6 +9,7 @@
    <% @user.created_decks.each do |deck| %>
     <tr>
       <td>
+        <!-- don't use relative pathing in html this will not work correctly on a deployed env -->
         <a href="../../../decks/<%= deck.id %>"><%= deck.name %></a>
       </td>
       <td><%= deck.snippet %></td>
