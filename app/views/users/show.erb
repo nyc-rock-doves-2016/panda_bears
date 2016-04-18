@@ -1,7 +1,6 @@
 <%= erb :_errors, locals: {errors: @errors} %>
 
 <h1 class="table_title"><%= @user.username %>'s Profile</h1>
-
 <table>
   <tr>
     <td><a href='/decks/new'>Create a Deck</a></td>
@@ -31,7 +30,7 @@
       <th>Total Guesses</th>
       <th>Percent Correct on First Try</th>
     </tr>
-    <% deck.rounds.select {|round| round.complete?}.each do |complete_round| %>
+    <% deck.rounds.select {|round| round.complete? && round.player == @user}.each do |complete_round| %>
       <tr>
         <td><%= complete_round.created_at.strftime('%a %d %b %Y') %></td>
         <td><%= complete_round.correct_on_first_try.length %></td>
