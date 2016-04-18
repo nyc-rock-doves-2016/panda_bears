@@ -52,7 +52,7 @@ nav a {
 
 a {
   text-decoration: none;
-  color: blue;
+  color: #555;
 }
 
 nav form {
@@ -160,4 +160,20 @@ h1, h2, h3 {
 	font-size: 250%;
 	text-align: center;
 	padding-top: 125px;
+}
+
+.back_to_my_decks {
+    display: inline;
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: #94d3ec;
+    padding: 10px;
+    border-radius: 20px;
+    margin-left: 6%;
+}
+
+.back_to_my_decks a:hover {
+    color: #f2e9b3;
+    padding: 10px;
 }

@@ -1,6 +1,8 @@
 <%= erb :_errors, locals: {errors: @errors} %>
 
-<a href='/users/<%= @deck.creator_id %>/decks'>Back to My Decks</a>
+<div class='back_to_my_decks'>
+  <a href='/users/<%= @deck.creator_id %>/decks'>Back to My Decks</a>
+</div>
 
 <h1 class="table_title"><%= @deck.name %></h1>
 

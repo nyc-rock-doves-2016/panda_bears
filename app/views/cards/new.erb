@@ -1,12 +1,26 @@
-<h3>Create a Question below</h3>
+<h1>Create a Question below:</h1>
 
-<form class="card_form" method="post" action="/cards">
-  <label for="question-input">Question:</label>
-  <textarea class="card_form_input" id="question-input" type="text" name="question"></textarea><br>
-
-  <label for="answer_input">Answer:</label>
-  <textarea class="card_form_input" id="answer_input" name="answer"></textarea><br>
-
-  <input type="submit" value="Add Question">
-  <input type="hidden" name="deck_id" value="<%= @deck_id %>">
-</form>
+<table>
+	<tr>
+		<td>
+			<h2>Question:</h2>
+			<form class="card_form" method="post" action="/cards">
+  			<label for="question-input"></label>
+  			<textarea rows="3" cols="50" class="card_form_input" id="question-input" type="text" name="question"></textarea>
+  		</td>
+	</tr>
+	<tr>
+		<td>
+			<h2>Answer:</h2>
+			<label for="answer_input"></label>
+  			<textarea class="card_form_input" id="answer_input" name="answer"></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input type="submit" value="Add Question">
+  			<input type="hidden" name="deck_id" value="<%= @deck_id %>">
+			</form>
+		</td>
+	</tr>
+</table>
