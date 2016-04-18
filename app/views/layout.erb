@@ -18,33 +18,28 @@
   <title></title>
 </head>
 <body>
-    <div id="quizzical">
-      <h1>Quizzical</h1>
-    </div>
-  <nav>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li>
-        <% if session[:user_id] %>
-         <% @user = User.find_by(id: session[:user_id]) %>
-          <a href="/users/<%= session[:user_id] %>"><%= @user.username %></a>
-        <% else %>
-           <a href="/users/new">Register</a>
-      </li>
-      <% end %>
-      <li>
-        <% if session[:user_id] %>
+  <div id="header">
+    <h1 id="quizzical"><a href='/'>Quizzical</a></h1>
+    <nav>
+        <a href="/">Home</a>
+          <% if session[:user_id] %>
+            <% @user = User.find_by(id: session[:user_id]) %>
+            <a href="/users/<%= session[:user_id] %>"><%= @user.username %></a>
+          <% else %>
+             <a href="/users/new">Register</a>
+          <% end %>
+          <% if session[:user_id] %>
               <form action="/sessions" method="post">
-              <input type="hidden" name="_method" value="delete">
-              <input type=submit value="Log Out">
-            </form>
-        <% else %>
-          <a class="button" href="/sessions">Log In</a>
-        <% end %>
-      </li>
-    </ul>
-    
-  </nav>
+                <input type="hidden" name="_method" value="delete">
+                <input type=submit value="Log Out">
+              </form>
+          <% else %>
+              <form action="/sessions" method="get">
+                <input type=submit value="Log In">
+              </form>
+          <% end %>
+    </nav>
+  </div>
 
   <div id="everything_below_nav_bar">
     <%= yield %>
