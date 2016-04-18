@@ -1,13 +1,23 @@
-<h1>Login Here!</h1>
 
 <%= erb :_errors, locals: {errors: @errors} %>
 
-<% unless session[:user_id] %>
-  <form action='/sessions' method='POST'>
-    Username: <input type='text' name='user[username]', placeholder='Username'>
-    <br>
-    Password: <input type='password' name='user[password]' placeholder='Password'>
-    <br>
-    <input type='submit' value='Login'>
-  </form>
-<% end %>
+<h1>Login Here!</h1>
+<table>
+   <tr>
+    <td>
+	    <form action='/sessions' method='POST'>
+      Username: <input type='text' name='user[username]', placeholder='Username'>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Password: <input type='password' name='user[password]' placeholder='Password'>
+    </td>
+  </tr>
+  <tr>
+    <td> 
+      <input class="button" type='submit' value='Login'>
+      </form>
+    </td>
+  </tr>
+</table>
